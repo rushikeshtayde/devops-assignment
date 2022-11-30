@@ -10,4 +10,4 @@ COPY . /app
 
 RUN python setup.py install
 
-CMD["flask","run"]
+CMD ["flask","run"]
