@@ -36,6 +36,10 @@ resource "aws_iam_role" "ecs_task_role" {
 EOF
 }
 
+resource "aws_ecs_cluster" "cluster" {
+  name = "Flaskapp"
+}
+
 resource "aws_ecs_task_definition" "definition" {
   family                   = "flaskapp"
   task_role_arn            = aws_iam_role.ecs_task_role.arn
