@@ -10,4 +10,6 @@ COPY . /app
 
 RUN python setup.py install
 
+EXPOSE 8081
+
 CMD ["flask","run"]
