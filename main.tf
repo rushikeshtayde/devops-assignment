@@ -13,28 +13,10 @@ data "aws_vpc" "default_vpc" {
 }
 
 data "aws_subnet_ids" "subnets" {
-  vpc_id = "${data.aws_vpc.default_vpc.id}"
+  vpc_id = data.aws_vpc.default_vpc.id
+  availability_zone= "eu-west-2a"
 }
 
-resource "aws_iam_role" "ecs_task_role" {
-  name = "flaskapp-ecsTaskRole"
-
-  assume_role_policy = <<EOF
-{
- "Version": "2012-10-17",
- "Statement": [
-   {
-     "Action": "sts:AssumeRole",
-     "Principal": {
-       "Service": "ecs-tasks.amazonaws.com"
-     },
-     "Effect": "Allow",
-     "Sid": ""
-   }
- ]
-}
-EOF
-}
 
 resource "aws_ecs_cluster" "cluster" {
   name = "Flaskapp"
